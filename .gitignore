@@ -1,0 +1,12 @@
+*.out
+*.exe
+*.lib
+*.a
+*.dll
+*.so
+*.class
+*.pyc
+*.pyw
+
+demo.*
+todo.list
