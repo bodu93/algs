@@ -23,3 +23,19 @@ void insertionsort_(int *A, size_t p, size_t r) {
 		}
 	}
 }
+
+// not swap directly! we just assignment
+void insertionsort_improved(int *A, size_t p, size_t r) {
+	for (size_t i = p + 1; i != r; ++i) {
+		int beInserted = A[i];
+		size_t j = i;
+		for (; j > p; --j) {
+			if (beInserted < A[j - 1]) {
+				A[j] = A[j - 1];
+			} else {
+				break;
+			}
+		}
+		A[j] = beInserted;
+	}
+}
