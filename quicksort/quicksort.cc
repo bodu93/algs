@@ -4,7 +4,7 @@
 
 void quicksort(int *A, size_t p, size_t q) {
 	if (p < q) {
-		//size_t mid = partition(A, p, q);
+		//size_t mid = lomuto_partition(A, p, q);
 		size_t mid = hoare_partition(A, p, q);
 		quicksort(A, p, mid);
 		quicksort(A, mid + 1, q);
@@ -16,8 +16,10 @@ void qsort_(int *A, size_t n) {
 }
 
 void print(const std::vector<int> &vec) {
+	std::cout << std::endl;
 	for (auto i : vec)
-		std::cout << std::endl << i << std::endl;
+		std::cout << i << " ";
+	std::cout << std::endl;
 }
 
 void test(std::vector<int> &vec) {
@@ -34,7 +36,7 @@ int main() {
 		{ 91, 19, 82, 29, 21, 11, -999 }
 	};
 
-	for (auto vec : vecs) {
+	for (auto &vec : vecs) {
 		test(vec);
 	}
 

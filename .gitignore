@@ -9,6 +9,7 @@
 *.pyw
 *.o
 *~
+*.swp
 
 demo.*
 TODO

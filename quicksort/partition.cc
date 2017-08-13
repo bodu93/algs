@@ -8,7 +8,7 @@ void swap_(int *p, int *q) {
 
 // A[p, r)
 // [x][...i][i+1...j]
-size_t partition(int *A, size_t p, size_t r) {
+size_t lomuto_partition(int *A, size_t p, size_t r) {
 	if (r <= p) return p;
 
 	int middle = A[p];
@@ -35,7 +35,7 @@ size_t hoare_partition(int *A, size_t p, size_t r) {
 			--j;
 		}
 
-		while (A[i] <= middle) {
+		while (A[i] < middle) {
 			++i;
 		}
 
