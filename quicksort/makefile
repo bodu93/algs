@@ -1,10 +1,4 @@
-PROJECTS_PATH=~/Projects/third
-INCLUDES=$(PROJECTS_PATH)/gtest_build/include
-LIBS=$(PROJECTS_PATH)/gtest_build/lib
-
-CC=clang++
-CXXFLAGS=-std=c++11 -Werror
-
+include ../env
 qsort : qsort_test.o quicksort.o partition.o
 	$(CC) -L $(LIBS) -lgmock_main -o qsort qsort_test.o quicksort.o partition.o
 
