@@ -23,3 +23,28 @@ size_t partition(int *A, size_t p, size_t r) {
 	
 	return i;
 }
+
+size_t hoare_partition(int *A, size_t p, size_t r) {
+	if (r <= p) return p;
+
+	int middle = A[p];
+	size_t i = p;
+	size_t j = r - 1;
+	while (true) {
+		while (A[j] > middle) {
+			--j;
+		}
+
+		while (A[i] <= middle) {
+			++i;
+		}
+
+		if (i < j) {
+			swap_(A + i, A + j);
+		} else {
+			break;
+		}
+	}
+
+	return j;
+}
