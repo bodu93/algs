@@ -14,31 +14,3 @@ void quicksort(int *A, size_t p, size_t q) {
 void qsort_(int *A, size_t n) {
 	quicksort(A, 0, n);
 }
-
-void print(const std::vector<int> &vec) {
-	std::cout << std::endl;
-	for (auto i : vec)
-		std::cout << i << " ";
-	std::cout << std::endl;
-}
-
-void test(std::vector<int> &vec) {
-	qsort_(&vec[0], vec.size());
-	print(vec);
-}
-
-
-int main() {
-	std::vector<std::vector<int>> vecs {
-		{ 1, 2, 3, 4, 5 },
-		{ 9, -1, 0, 99, -4, 42 },
-		{ 0, -9, 1, 92, 3, 9, 34, 41, 84 },
-		{ 91, 19, 82, 29, 21, 11, -999 }
-	};
-
-	for (auto &vec : vecs) {
-		test(vec);
-	}
-
-	return 0;
-}

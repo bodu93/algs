@@ -1,19 +1,21 @@
-PROJECTS_PATH=~/Projects
-INCLUDE_PATH=$(PROJECTS_PATH)/gtest_build/include
-LIB_PATH=$(PROJECTS_PATH)/gtest_build/lib
+PROJECTS_PATH=~/Projects/third
+INCLUDES=$(PROJECTS_PATH)/gtest_build/include
+LIBS=$(PROJECTS_PATH)/gtest_build/lib
 
 CC=clang++
 CXXFLAGS=-std=c++11 -Werror
-LIBS=-lpthread -lm
 
-qsort.out : partition.o quicksort.o
-	$(CC) -o qsort.out partition.o quicksort.o
+qsort : qsort_test.o quicksort.o partition.o
+	$(CC) -L $(LIBS) -lgmock_main -o qsort qsort_test.o quicksort.o partition.o
 
-quicksort.o : quicksort.cc partition.h
-	$(CC) -c quicksort.cc $(CXXFLAGS)
+qsort_test.o : qsort_test.cc quicksort.h
+	$(CC) -c -I $(INCLUDES) qsort_test.cc $(CXXFLAGS)
+	
+quicksort.o : quicksort.cc quicksort.h partition.h
+	$(CC) -c -I $(INCLUDES) quicksort.cc $(CXXFLAGS)
 
 partition.o : partition.cc partition.h
-	$(CC) -c partition.cc $(CXXFLAGS)
+	$(CC) -c -I $(INCLUDES) partition.cc $(CXXFLAGS)
 
 
 
