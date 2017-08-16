@@ -10,6 +10,7 @@
 *.o
 *~
 *.swp
+.DS_store
 
 demo.*
 TODO
