@@ -1,10 +1,5 @@
 #include "partition.h"
-
-void swap_(int *p, int *q) {
-	int t = *p;
-	*p = *q;
-	*q = t;
-}
+#include "../include/swp.h"
 
 // A[p, r)
 // [x][...i][i+1...j]

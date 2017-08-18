@@ -1,10 +1,5 @@
 #include "selectionsort.h"
-
-void swap_(int *p, int *q) {
-	int t = *p;
-	*p = *q;
-	*q = t;
-}
+#include "../include/swp.h"
 
 void selectionsort_(int *A, size_t p, size_t r) {
 	for (size_t i = p; i != r; ++i) {

@@ -1,14 +1,20 @@
 include env
 
 sortalgs = selectionsort insertionsort quicksort
-#sortalgs = ./%sort
 
 .PHONY:all clean run
-all : $(sortalgs)
-	cd $^/ && $(MAKE)
-run : $(sortalgs)
-	-./$</$(addsuffix .out, $<)
+all :
+	for alg in $(sortalgs); do \
+		cd $$alg && $(MAKE); \
+	done
+run :
+	for alg in $(sortalgs); do \
+		-./$$alg/$(addsuffix .out, $$alg); \
+	done
 
-clean:$(addprefix clean_, $(sortalgs))
-clear_$<:
-	cd clear_$</ && $(MAKE) clean
+clean :
+	for alg in $(sortalgs); do \
+		cd $$alg && $(MAKE) clean; \
+	done
+
+unexport
