@@ -1,3 +1,3 @@
 target = insertionsort.out
 
-include ../env
+include ../base.mk

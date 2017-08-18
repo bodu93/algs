@@ -1,3 +1,3 @@
 target = quicksort.out
 
-include ../env
+include ../base.mk
