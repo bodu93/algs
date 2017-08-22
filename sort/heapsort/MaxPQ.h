@@ -1,15 +1,18 @@
 #ifndef MAXPQ_H
 #define MAXPQ_H
 
-#include <vector>
+//#include <vector>
+#include "container/vector.h"
 
 template <typename T>
 class MaxPQ {
-	typedef typename std::vector<T>::size_type size_type;
+	//typedef typename std::vector<T>::size_type size_type;
+	typedef typename toys::container::vector<T>::size_type size_type;
 	typedef T Key;
 
 	// reserve rank 0 for simplification.
-	std::vector<T> pq_;
+	//std::vector<T> pq_;
+	toys::container::vector<T> pq_;
 	size_type size_;
 
 	size_type parent(size_t k) {

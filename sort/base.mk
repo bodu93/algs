@@ -1,12 +1,14 @@
-PROJECTS_PATH=~/Projects/third
+PROJECTS_PATH=~/Projects
+THIRD_PATH = $(PROJECTS_PATH)/third
 
-GTEST_INCLUDE=$(PROJECTS_PATH)/gtest_build/include
+GTEST_INCLUDE=$(THIRD_PATH)/gtest_build/include
 SORT_INCLUDE=../include/
+TOYS_INCLUDE=$(PROJECTS_PATH)/gits/toys/
 
-GTEST_LIBS=$(PROJECTS_PATH)/gtest_build/lib
+GTEST_LIBS=$(THIRD_PATH)/gtest_build/lib
 
 CC=clang++
-CXXFLAGS=-std=c++11 -Werror -I $(GTEST_INCLUDE) -I $(SORT_INCLUDE)
+CXXFLAGS=-std=c++11 -Werror -I $(GTEST_INCLUDE) -I $(SORT_INCLUDE) -I $(TOYS_INCLUDE)
 
 objects := $(patsubst %.cc, %.o, $(wildcard *.cc))
 objects += $(patsubst %.cc, %.o, $(wildcard ../src/*.cc))
