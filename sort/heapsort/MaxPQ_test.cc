@@ -1,8 +1,8 @@
-#include "MaxPQ.h"
+#include "utility/MaxPQ.h"
 #include "gtest/gtest.h"
 
 TEST(MaxPQtest, test1) {
-	MaxPQ<int> mm;
+	toys::utility::MaxPQ<int> mm;
 
 	mm.insert(1);
 	mm.insert(-1);
