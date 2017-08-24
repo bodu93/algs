@@ -33,6 +33,21 @@ void graph::addEdge(int v, int w) {
 	++e_;
 }
 
+graph graph::reverse() {
+	graph r;
+	r.resize(V());
+
+	size_t rank = 0;
+	for (const auto &v : adjTable_) {
+		for (int va : v.adj) {
+			r.addEdge(va, rank);
+		}
+		++rank;
+	}
+
+	return r;
+}
+
 Vector<int> graph::adj(int v) const {
 	return adjTable_[v].adj;
 }

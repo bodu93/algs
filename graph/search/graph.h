@@ -38,6 +38,7 @@ class graph {
 public:
 	friend std::ostream &operator<<(std::ostream &os, const graph &g);
 
+	graph() { }
 	explicit graph(std::istream &in);
 
 	size_t V() const;
@@ -47,10 +48,17 @@ public:
 	Vector<int> adj(int v) const;
 	const vertex &node(int v) const;
 	
+	// breadth-first-search
 	void bfs(int s);
 
+	// depth-first-search
 	void dfs(int s);
+
+	// topological order
 	Vector<int> reverseOrder();
+
+	// reverse
+	graph reverse();
 private:
 	void dfs_visit(int s);
 
