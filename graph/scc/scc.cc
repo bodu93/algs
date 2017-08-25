@@ -1,4 +1,4 @@
-#include "SCC.h"
+#include "scc.h"
 
 SCC::SCC(graph g)
 	:sgraph_{g} 
