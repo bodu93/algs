@@ -34,6 +34,7 @@ struct vertex {
 	{ }
 };
 
+// adjacency list
 class graph {
 public:
 	friend std::ostream &operator<<(std::ostream &os, const graph &g);
