@@ -17,10 +17,10 @@ objects := $(patsubst %.cc, %.o, $(wildcard *.cc))
 objects += $(patsubst %.cc, %.o, $(wildcard $(GRAPH_PATH)/search/graph.cc))
 
 $(target):$(objects)
-	$(CC) -L $(GTEST_LIBS) -lgmock_main $(objects) -o $(target)
+	$(CC) -L $(GTEST_LIBS) -g -lgmock_main $(objects) -o $(target)
 
 $(objects):%.o:%.cc
-	$(CC) -c $(INCLUDES) $(CXXFLAGS) $< -o $@
+	$(CC) -c -g $(INCLUDES) $(CXXFLAGS) $< -o $@
 
 .PHONY : clean
 clean :

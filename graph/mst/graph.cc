@@ -1,7 +1,9 @@
 #include "graph.h"
+// for std::numeric_limits<double>::max
+#include <limits>
 
 graph::graph(size_t n)
-	:adjmatrix_(n * n, -1.0)
+	:adjmatrix_(n * n, std::numeric_limits<double>::max())
 	 ,v_(n)
 { }
 
@@ -9,6 +11,9 @@ graph::graph(std::istream &in) {
 	unsigned V = 0;
 	in >> V;
 	v_ = V;
+	adjmatrix_.resize(V * V);
+	for (auto &v : adjmatrix_)
+		v = std::numeric_limits<double>::max();
 
 	unsigned v = 0;
 	unsigned w = 0;
@@ -21,11 +26,9 @@ graph::graph(std::istream &in) {
 std::vector<size_t> graph::adj(size_t v) const {
 	std::vector<size_t> result;
 
-	size_t brank = v * v_;
-	size_t erank = (v + 1) * v_;
-	for (size_t i = brank; i != erank; ++i) {
-		if (adjmatrix_[i] != -1) {
-			result.push_back(i - brank);
+	for (size_t i = 0; i != V(); ++i) {
+		if (edge(v, i) != std::numeric_limits<double>::max()) {
+			result.push_back(i);
 		}
 	}
 
@@ -36,14 +39,19 @@ size_t graph::V() const {
 	return v_;
 }
 
-double graph::weight(size_t v, size_t w) {
+double graph::weight(size_t v, size_t w) const {
 	return edge(v, w);
 }
 
 void graph::addedge(size_t v, size_t w, int weight) {
 	edge(v, w) = weight;
+	edge(w, v) = weight;
 }
 
 double& graph::edge(size_t v, size_t w) {
-	return adjmatrix_[v * w];
+	return adjmatrix_[v * V() + w];
+}
+
+double graph::edge(size_t v, size_t w) const {
+	return adjmatrix_[v * V() + w];
 }

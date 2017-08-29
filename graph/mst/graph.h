@@ -18,7 +18,7 @@ public:
 	size_t V() const;
 
 	// -1 for non-edge between v and w
-	double weight(size_t v, size_t w);
+	double weight(size_t v, size_t w) const;
 
 	void addedge(size_t v, size_t w, int weight);
 
@@ -27,6 +27,7 @@ private:
 	size_t v_;
 
 	double &edge(size_t v, size_t w);
+	double edge(size_t v, size_t w) const;
 };
 
 #endif // GRAPH_H

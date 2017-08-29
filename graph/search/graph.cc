@@ -95,12 +95,14 @@ std::vector<int> graph::reverseOrder() {
 	return result;
 }
 
-void graph::dfs(int s) {
+void graph::dfs() {
 	time = 0;
 
-	for (const auto &v : adjTable_) {
+	//for (const auto &v : adjTable_) {
+	for (size_t i = 0; i != adjTable_.size(); ++i) {
+		const vertex &v = adjTable_[i];
 		if (v.color == Color::eWhite) {
-			dfs_visit(s);
+			dfs_visit(i);
 		}
 	}
 	

@@ -48,7 +48,7 @@ public:
 	}
 
 	size_t findKey(const T &f, bool (*equals)(const T &, const T &)) const {
-		size_t result = -1;
+		size_t result = static_cast<size_t>(-1);
 		
 		for (size_t i = 0; i != size_; ++i) {
 			if (equals(f, pq_[i + 1])) {

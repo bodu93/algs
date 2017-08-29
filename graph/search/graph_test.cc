@@ -19,7 +19,7 @@ int main() {
 		std::ifstream in("../data/search.txt");
 		if (!in.fail()) {
 			graph g(in);
-			g.dfs(2);
+			g.dfs();
 			std::cout << g << std::endl;
 		}
 	}

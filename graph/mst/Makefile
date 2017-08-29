@@ -1,4 +1,3 @@
-target = kruskal_test.out
-#target = prim_test.out
+target = mst_test.out
 
 include ../graph.mk

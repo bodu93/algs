@@ -6,9 +6,6 @@ SCC::SCC(dag g)
 	,id_(g.V(), 0)
 	,count_(0)
 {
-	//dag r = g.reverse();
-	//r.dfs();
-	
 	g.dfs();
 	for (size_t s : g.reverseOrder()) {
 		if (!marked_[s]) {
@@ -23,8 +20,9 @@ void SCC::dfs(size_t v) {
 	id_[v] = count_;
 
 	for (size_t w : sgraph_.adj(v)) {
-		if (!marked_[w])
+		if (!marked_[w]) {
 			dfs(w);
+		}
 	}
 }
 

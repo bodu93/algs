@@ -50,7 +50,7 @@ public:
 	void bfs(int s);
 
 	// depth-first-search
-	void dfs(int s);
+	void dfs();
 
 	// topological order
 	std::vector<int> reverseOrder();

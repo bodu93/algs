@@ -4,20 +4,20 @@
 prim::prim(graph g)
 	:g_(g)
 	 ,nodes_(g.V())
-	 ,inq_(g.V(), false)
+	 ,inq_(g.V(), true)
 {
 	for (size_t i = 0; i != g_.V(); ++i) {
 		nodes_[i].parent = i;
-		nodes_[i].to = i;
+		nodes_[i].rank = i;
 	}
 }
 
 static bool vertex_equals(const vertex &lhs, const vertex &rhs) {
-	return lhs.to == rhs.to;
+	return lhs.rank == rhs.rank;
 }
 
 // CLRS(3th) P369
-std::vector<size_t> prim::mst(size_t r) {
+std::vector<vertex> prim::mst(size_t r) {
 	nodes_[r].key = 0;
 	
 	MinPQ<vertex> Q;
@@ -26,15 +26,16 @@ std::vector<size_t> prim::mst(size_t r) {
 	}
 
 	while (!Q.empty()) {
-		const vertex &u = Q.delMin();
-		inq_[u.to] = true;
-		for (size_t v : g_.adj(u.to)) {
-			if (inq_[v] && g_.weight(u.to, v) < nodes_[v].key) {
-				nodes_[v].parent = u.to;
-				nodes_[v].key = g_.weight(u.to, v);
+		const vertex &unode = Q.delMin();
+		size_t u = unode.rank;
+		inq_[u] = false;
+		for (size_t v : g_.adj(u)) {
+			if (inq_[v] && (g_.weight(u, v) < nodes_[v].key)) {
+				nodes_[v].parent = u;
+				nodes_[v].key = g_.weight(u, v);
 				// update v.key = w(u, v) in Q
 				vertex findv;
-				findv.to = v;
+				findv.rank = v;
 				size_t idx = Q.findKey(findv, vertex_equals);
 				if (idx != static_cast<size_t>(-1)) {
 					Q.decreaseKey(idx, nodes_[v]);
@@ -43,5 +44,5 @@ std::vector<size_t> prim::mst(size_t r) {
 		}
 	}
 
-	return std::vector<size_t>();
+	return nodes_;
 }

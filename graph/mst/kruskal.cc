@@ -1,6 +1,7 @@
 #include "kruskal.h"
 // for std::sort
 #include <algorithm>
+// for std::swap
 #include <utility>
 
 #include "../../utility/MinPQ.h"
