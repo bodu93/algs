@@ -7,6 +7,7 @@ ShortestPath::ShortestPath(const weighted_dag &g)
 	,vertexes_(g_.V())
 { }
 
+// CLRS(3th) P379
 bool ShortestPath::bellman_ford(size_t s) {
 	init(s);
 
@@ -18,13 +19,13 @@ bool ShortestPath::bellman_ford(size_t s) {
 		}
 	}
 
-	//for (size_t u = 0; u != g_.V(); ++u) {
-	//	for (size_t v : g_.adj(u)) {
-	//		if (vertexes_[v].d > vertexes_[u].d + g_.weight(u, v)) {
-	//			return false;
-	//		}
-	//	}
-	//}
+	for (size_t u = 0; u != g_.V(); ++u) {
+		for (size_t v : g_.adj(u)) {
+			if (vertexes_[v].d > vertexes_[u].d + g_.weight(u, v)) {
+				return false;
+			}
+		}
+	}
 
 	return true;
 }
@@ -33,6 +34,7 @@ static bool vertex_equals(const vertex &lhs, const vertex &rhs) {
 	return lhs.rank == rhs.rank;
 }
 
+// CLRS(3th) P383
 std::vector<vertex> ShortestPath::dijkstra(size_t s) {
 	init(s);
 
