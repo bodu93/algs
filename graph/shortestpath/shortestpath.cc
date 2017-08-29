@@ -1,8 +1,8 @@
 #include "shortestpath.h"
 
-#include "utility/minpq.h"
+#include "../../utility/MinPQ.h"
 
-ShortestPath::ShortestPath(const graph &g)
+ShortestPath::ShortestPath(const weighted_dag &g)
 	:g_{g}
 	,vertexes_(g_.V())
 { }
@@ -18,13 +18,13 @@ bool ShortestPath::bellman_ford(size_t s) {
 		}
 	}
 
-	for (size_t u = 0; u != g_.V(); ++u) {
-		for (size_t v : g_.adj(u)) {
-			if (vertexes_[v].d > vertexes_[u].d + g.weight(u, v)) {
-				return false;
-			}
-		}
-	}
+	//for (size_t u = 0; u != g_.V(); ++u) {
+	//	for (size_t v : g_.adj(u)) {
+	//		if (vertexes_[v].d > vertexes_[u].d + g_.weight(u, v)) {
+	//			return false;
+	//		}
+	//	}
+	//}
 
 	return true;
 }
@@ -33,7 +33,7 @@ static bool vertex_equals(const vertex &lhs, const vertex &rhs) {
 	return lhs.rank == rhs.rank;
 }
 
-void ShortestPath::dijkstra(size_t s) {
+std::vector<vertex> ShortestPath::dijkstra(size_t s) {
 	init(s);
 
 	MinPQ<vertex> Q;
@@ -56,11 +56,16 @@ void ShortestPath::dijkstra(size_t s) {
 				}
 			}
 		}
+	}
+
+	return vertexes_;
 }
 
 void ShortestPath::init(size_t s) {
-	for (size_t i = 0; i != vertexes_.size(); ++i)
+	for (size_t i = 0; i != vertexes_.size(); ++i) {
 		vertexes_[i].rank = i;
+		vertexes_[i].parent = i;
+	}
 
 	vertexes_[s].d = 0;
 }
