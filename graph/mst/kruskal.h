@@ -3,6 +3,7 @@
 
 #include <istream>
 #include <vector>
+#include <algorithm>
 
 struct edge {
 	int v{-1};
@@ -16,6 +17,13 @@ struct edge {
 	{ }
 
 	bool operator<(const edge &other) const;
+	bool operator==(const edge &other) const;
+
+	friend void swap(edge &l, edge &r) noexcept {
+		std::swap(l.v, r.v);
+		std::swap(l.w, r.w);
+		std::swap(l.weight, r.weight);
+	}
 };
 
 
@@ -24,10 +32,10 @@ public:
 	kruskal();
 	explicit kruskal(std::istream &in);
 
-	std::vector<edge> mst() const;	
+	std::vector<edge> mst();	
 
 private:
-	std::vector<int>	edges_;
+	std::vector<edge>	edges_;
 	size_t				v_{0};
 };
 

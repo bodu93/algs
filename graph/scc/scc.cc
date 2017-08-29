@@ -1,13 +1,16 @@
 #include "scc.h"
 
-SCC::SCC(graph g)
-	:sgraph_{g} 
+SCC::SCC(dag g)
+	:sgraph_{g.reverse()} 
 	,marked_(g.V(), false)
 	,id_(g.V(), 0)
 	,count_(0)
 {
-	graph r = g.reverse();
-	for (int s : r.reverseOrder()) {
+	//dag r = g.reverse();
+	//r.dfs();
+	
+	g.dfs();
+	for (size_t s : g.reverseOrder()) {
 		if (!marked_[s]) {
 			dfs(s);
 			++count_;
@@ -15,24 +18,24 @@ SCC::SCC(graph g)
 	}
 }
 
-void SCC::dfs(int v) {
+void SCC::dfs(size_t v) {
 	marked_[v] = true;
 	id_[v] = count_;
 
-	for (int w : sgraph_.adj(v)) {
+	for (size_t w : sgraph_.adj(v)) {
 		if (!marked_[w])
 			dfs(w);
 	}
 }
 
-bool SCC::stronglyConnected(int v, int w) {
+bool SCC::stronglyConnected(size_t v, size_t w) {
 	return id_[v] == id_[w];
 }
 
-size_t SCC::id(int v) const {
+size_t SCC::id(size_t v) const {
 	return id_[v];
 }
 
 size_t SCC::count() const {
-	return count_;
+	return count_ + 1;
 }

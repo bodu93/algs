@@ -1,3 +1,3 @@
 target = mergesort.out
 
-include ../../base.mk
+include ../sort.mk

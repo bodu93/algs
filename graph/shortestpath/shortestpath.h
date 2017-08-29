@@ -14,6 +14,10 @@ struct vertex {
 		return d < other.d;
 	}
 
+	bool operator<=(const vertex &other) const {
+		return d <= other.d;
+	}	
+
 	bool operator==(const vertex &other) const {
 		return d == other.d;
 	}

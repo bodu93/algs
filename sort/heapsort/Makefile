@@ -1,4 +1,3 @@
-target  = MaxPQtest.out
-#target := heapsort_test.out
+target := heapsort_test.out
 
-include ../../base.mk
+include ../sort.mk

@@ -1,5 +1,5 @@
 #ifndef GRAPH_H
-#define GRAPH_
+#define GRAPH_H
 
 #include <vector>
 // for size_t
@@ -18,7 +18,7 @@ public:
 	size_t V() const;
 
 	// -1 for non-edge between v and w
-	double weight(size_t v, size_t w) const;
+	double weight(size_t v, size_t w);
 
 	void addedge(size_t v, size_t w, int weight);
 
@@ -28,3 +28,5 @@ private:
 
 	double &edge(size_t v, size_t w);
 };
+
+#endif // GRAPH_H

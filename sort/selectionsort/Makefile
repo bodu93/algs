@@ -1,3 +1,3 @@
 target = selectionsort.out
 
-include ../../base.mk
+include ../sort.mk

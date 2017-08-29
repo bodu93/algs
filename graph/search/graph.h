@@ -1,12 +1,9 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
-#include "container/vector.h"
+#include <vector>
 #include <stack>
 #include <istream>
-
-template <typename T>
-using Vector = toys::container::vector<T>;
 
 enum class Color {
 	eWhite,
@@ -24,7 +21,7 @@ struct vertex {
 	
 	int			p;		// parent in bfs-tree or dfs-tree
 
-	Vector<int> adj;	// adj...
+	std::vector<int> adj;	// adj...
 
 	vertex()
 		: color(Color::eWhite)
@@ -46,7 +43,7 @@ public:
 	size_t E() const;
 	void addEdge(int v, int w);
 
-	Vector<int> adj(int v) const;
+	std::vector<int> adj(int v) const;
 	const vertex &node(int v) const;
 	
 	// breadth-first-search
@@ -56,7 +53,7 @@ public:
 	void dfs(int s);
 
 	// topological order
-	Vector<int> reverseOrder();
+	std::vector<int> reverseOrder();
 
 	// reverse
 	graph reverse();
@@ -65,11 +62,11 @@ private:
 
 	size_t e_{ 0 };
 
-	Vector<vertex> adjTable_;
+	std::vector<vertex> adjTable_;
 
 
-	Vector<int> preOrder_;
-	Vector<int> postOrder_;
+	std::vector<int> preOrder_;
+	std::vector<int> postOrder_;
 	std::stack<int> reverseOrder_;		// topological order
 
 	static int time;					// for dfs visit time

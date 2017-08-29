@@ -35,7 +35,7 @@ void graph::addEdge(int v, int w) {
 
 graph graph::reverse() {
 	graph r;
-	r.resize(V());
+	r.adjTable_.resize(V());
 
 	size_t rank = 0;
 	for (const auto &v : adjTable_) {
@@ -48,7 +48,7 @@ graph graph::reverse() {
 	return r;
 }
 
-Vector<int> graph::adj(int v) const {
+std::vector<int> graph::adj(int v) const {
 	return adjTable_[v].adj;
 }
 
@@ -84,8 +84,8 @@ void graph::bfs(int s) {
 	}
 }
 
-Vector<int> graph::reverseOrder() {
-	Vector<int> result;
+std::vector<int> graph::reverseOrder() {
+	std::vector<int> result;
 
 	while (!reverseOrder_.empty()) {
 		result.push_back(reverseOrder_.top());

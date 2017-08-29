@@ -1,3 +1,3 @@
 target = insertionsort.out
 
-include ../../base.mk
+include ../sort.mk

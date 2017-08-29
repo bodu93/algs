@@ -1,5 +1,5 @@
 #include "prim.h"
-#include "utility/MinPQ.h"
+#include "../../utility/MinPQ.h"
 
 prim::prim(graph g)
 	:g_(g)
@@ -17,28 +17,31 @@ static bool vertex_equals(const vertex &lhs, const vertex &rhs) {
 }
 
 // CLRS(3th) P369
-std::vector<size_t> prim::mst(size_t r) const {
-	nodes_[r].weight = 0;
+std::vector<size_t> prim::mst(size_t r) {
+	nodes_[r].key = 0;
 	
 	MinPQ<vertex> Q;
-	for (const auto &v : nodes_)
+	for (const auto &v : nodes_) {
 		Q.insert(v);
+	}
 
 	while (!Q.empty()) {
 		const vertex &u = Q.delMin();
-		inq_[u.to()] = true;
-		for (size_t v : g_.adj(u.to())) {
-			if (inq_[v] && g_.weight(u.to(), v) < nodes_[v].key) {
-				nodes_[v].parent = u.to();
-				nodes_[v].key = g_.weight(u.to(), v);
+		inq_[u.to] = true;
+		for (size_t v : g_.adj(u.to)) {
+			if (inq_[v] && g_.weight(u.to, v) < nodes_[v].key) {
+				nodes_[v].parent = u.to;
+				nodes_[v].key = g_.weight(u.to, v);
 				// update v.key = w(u, v) in Q
 				vertex findv;
 				findv.to = v;
 				size_t idx = Q.findKey(findv, vertex_equals);
 				if (idx != static_cast<size_t>(-1)) {
-					Q.decreaseKey(idx, g_.weight(u.to(), v);
+					Q.decreaseKey(idx, nodes_[v]);
 				}
 			}
 		}
 	}
+
+	return std::vector<size_t>();
 }

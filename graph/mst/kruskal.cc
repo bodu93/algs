@@ -1,31 +1,36 @@
 #include "kruskal.h"
 // for std::sort
 #include <algorithm>
+#include <utility>
 
-#include "utility/MinPQ.h"
-#include "utility/ufset.h"
+#include "../../utility/MinPQ.h"
+#include "../../utility/ufset.h"
 
 bool edge::operator<(const edge &other) const {
 	return weight < other.weight;
 }
 
+bool edge::operator==(const edge &other) const {
+	return weight == other.weight;
+}
+
 kruskal::kruskal() {}
 
 kruskal::kruskal(std::istream &in) {
-	unsigned v;
-	in >> v;
-	v_ = v;
+	unsigned V;
+	in >> V;
+	v_ = V;
 
 	int v = 0;
 	int w = 0;
 	double weight = 0.0;
 	while (in >> v >> w >> weight) {
-		edges_.emplace_back({v, w, weight});
+		edges_.push_back(edge{v, w, weight});
 	}
 }
 
 // CLRS(3th) P366
-std::vector<edge> kruskal::mst() const {
+std::vector<edge> kruskal::mst() {
 	std::vector<edge> result;
 
 	// for each vertex v, MAKE-SET(v)

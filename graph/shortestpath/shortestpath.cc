@@ -52,7 +52,7 @@ void ShortestPath::dijkstra(size_t s) {
 				findv.rank = v;
 				size_t idx = Q.findKey(findv, vertex_equals);
 				if (idx != static_cast<size_t>(-1)) {
-					Q.decreaseKey(idx, vertexes_[v].d);
+					Q.decreaseKey(idx, vertexes_[v]);
 				}
 			}
 		}

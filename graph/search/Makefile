@@ -1,3 +1,3 @@
-target = graph.out
+target := graph_search_test.out
 
-include ../../base.mk
+include ../graph.mk

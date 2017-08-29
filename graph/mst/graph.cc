@@ -6,9 +6,9 @@ graph::graph(size_t n)
 { }
 
 graph::graph(std::istream &in) {
-	unsigned v = 0;
-	in >> v;
-	v_ = v;
+	unsigned V = 0;
+	in >> V;
+	v_ = V;
 
 	unsigned v = 0;
 	unsigned w = 0;
@@ -36,7 +36,7 @@ size_t graph::V() const {
 	return v_;
 }
 
-double graph::weight(size_t v, size_t w) const {
+double graph::weight(size_t v, size_t w) {
 	return edge(v, w);
 }
 
