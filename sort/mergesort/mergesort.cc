@@ -19,8 +19,16 @@ void merge(int *A, size_t lo, size_t mid, size_t hi, int * aux) {
 	for (size_t k = lo; k != hi; ++k) {
 		if (i >= mid) A[k] = aux[j++];
 		else if (j >= hi) A[k] = aux[i++];
-		else if (aux[i] <= aux[j]) A[k] = aux[i++];
-		else A[k] = aux[j++];
+        else {
+            // opitimized for using cmov**
+            bool bresult = aux[i] <= aux[j];
+            int min = bresult ? aux[i] : aux[j];
+            size_t *minrank = bresult ? &i : &j;
+            ++(*minrank);
+            A[k] = min;
+        }
+		//else if (aux[i] <= aux[j]) A[k] = aux[i++];
+		//else A[k] = aux[j++];
 	}
 }
 
