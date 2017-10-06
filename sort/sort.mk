@@ -10,14 +10,14 @@ SORT_PATH=$(GITS_PATH)/algs/sort
 GTEST_LIBS=$(THIRD_PATH)/gtest_build/lib
 
 CC=clang++
-CXXFLAGS=-std=c++14 -Werror -I $(GTEST_INCLUDE) -I $(SORT_PATH)/include
+CXXFLAGS=-std=c++14 -Werror -I $(GTEST_INCLUDE) -I $(SORT_PATH)/include -g
 
 objects := $(patsubst %.cc, %.o, $(wildcard *.cc))
 objects += $(patsubst %.cc, %.o, $(wildcard $(SORT_PATH)/src/*.cc))
 
 
 $(target):$(objects)
-	$(CC) -L $(GTEST_LIBS) -lgmock_main $(objects) -o $(target)
+	$(CC) -L $(GTEST_LIBS) -lgmock_main $(objects) -o $(target) -g
 
 $(objects):%.o:%.cc
 	$(CC) -c $(INCLUDES) $(CXXFLAGS) $< -o $@
