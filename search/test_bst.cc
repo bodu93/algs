@@ -21,6 +21,7 @@ int main() {
 	};
 	bt.levelTraverse(func);
 	bt.inorder_traverse(func);
+	bt.inorder_traverse2(func);
 
 	bt1.erase(3);
 	bt2.erase(2);

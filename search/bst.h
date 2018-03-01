@@ -136,8 +136,25 @@ public:
 		}
 	}
 
+	void inorder_traverse2(const traversefunc& traverse) {
+		if (root == nullptr) return;
+
+		std::stack<iterator> nodes;
+		nodes.push(root);
+
+		while (!nodes.empty()) {
+			iterator cur = nodes.top();
+			nodes.pop();
+
+			traverse(cur);
+
+			if (cur->right != nullptr) nodes.push(cur->right);
+			if (cur->left != nullptr) nodes.push(cur->left);
+		}
+	}
+
 	void postorder_traverse(const traversefunc& traverse) {
-		// TODO
+		// iteration implementation??
 	}
 
 	void insert(const Key &key, const Value &value) {
